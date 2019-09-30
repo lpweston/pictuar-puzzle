@@ -1,0 +1,29 @@
+{
+  "name": "pictuar-puzzle",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lpweston/pictuar-puzzle.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lpweston/pictuar-puzzle/issues"
+  },
+  "homepage": "https://github.com/lpweston/pictuar-puzzle#readme",
+  "devDependencies": {
+    "eslint": "^6.5.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "husky": "^3.0.7"
+  }
+}
