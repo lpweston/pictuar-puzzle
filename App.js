@@ -1,26 +1,14 @@
-/**
- * Copyright (c) 2017-present, Viro, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- */
-
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, TouchableHighlight } from 'react-native';
 
-import { ViroVRSceneNavigator, ViroARSceneNavigator } from 'react-viro';
+import { ViroARSceneNavigator } from 'react-viro';
 
-/*
- TODO: Insert your API key below
- */
 var sharedProps = {
   apiKey: 'AD45DBB9-F152-4A83-AA74-086AAD562BA6'
 };
 
 // Sets the default scene you want for AR and VR
-var InitialARScene = require('./js/HelloWorldSceneAR');
+var InitialARScene = require('./js/PictureSceneAR');
 
 var UNSET = 'UNSET';
 var AR_NAVIGATOR_TYPE = 'AR';

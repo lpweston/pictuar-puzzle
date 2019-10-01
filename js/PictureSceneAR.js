@@ -12,15 +12,11 @@ import {
   ViroText
 } from 'react-viro';
 
-export default class HelloWorldSceneAR extends Component {
+export default class PictureSceneAR extends Component {
   constructor() {
     super();
 
-    // Set initial state here
     this.state = {};
-
-    // bind 'this' to functions
-    // this._onInitialized = this._onInitialized.bind(this);
   }
 
   render() {
@@ -64,17 +60,11 @@ export default class HelloWorldSceneAR extends Component {
         </ViroARImageMarker>
         <ViroARImageMarker target={'targetWhole'}>
           <ViroText
-            style={{
-              fontFamily: 'Arial',
-              fontSize: 10,
-              color: '#ffffff',
-              textAlignVertical: 'center',
-              textAlign: 'center'
-            }}
-            text="Congratulations you win!"
-            height={0.2}
-            width={0.2}
-            position={[0, 0.1, 0]}
+            style={styles.textStyle}
+            width={1}
+            height={1}
+            text="You win!"
+            position={[0, 0.15, 0]}
             rotation={[-90, 0, 0]}
           />
         </ViroARImageMarker>
@@ -124,13 +114,13 @@ ViroARTrackingTargets.createTargets({
 });
 
 var styles = StyleSheet.create({
-  helloWorldTextStyle: {
+  textStyle: {
     fontFamily: 'Arial',
-    fontSize: 30,
+    fontSize: 5,
     color: '#ffffff',
     textAlignVertical: 'center',
     textAlign: 'center'
   }
 });
 
-module.exports = HelloWorldSceneAR;
+module.exports = PictureSceneAR;
