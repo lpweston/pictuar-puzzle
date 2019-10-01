@@ -62,15 +62,22 @@ export default class HelloWorldSceneAR extends Component {
             rotation={[-90, 0, 0]}
           />
         </ViroARImageMarker>
-        {/* <ViroARImageMarker target={'targetWhole'}>
-          <ViroImage
+        <ViroARImageMarker target={'targetWhole'}>
+          <ViroText
+            style={{
+              fontFamily: 'Arial',
+              fontSize: 10,
+              color: '#ffffff',
+              textAlignVertical: 'center',
+              textAlign: 'center'
+            }}
+            text="Congratulations you win!"
             height={0.2}
             width={0.2}
-            source={require('./res/whole-pic.jpg')}
-            position={[0, 0.2, 0]}
+            position={[0, 0.1, 0]}
             rotation={[-90, 0, 0]}
           />
-        </ViroARImageMarker> */}
+        </ViroARImageMarker>
       </ViroARScene>
     );
   }
@@ -110,7 +117,7 @@ ViroARTrackingTargets.createTargets({
 
 ViroARTrackingTargets.createTargets({
   targetWhole: {
-    source: require('./res/whole-pic.jpg'),
+    source: require('./res/whole.jpg'),
     orientation: 'Up',
     physicalWidth: 0.4 // real world width in meters
   }
