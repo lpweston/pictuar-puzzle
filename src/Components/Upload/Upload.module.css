@@ -12,3 +12,16 @@
   display: flex;
   justify-content: center;
 }
+
+.downloadButton {
+  display: flex;
+  justify-content: center;
+}
+
+.images {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 10%;
+}
