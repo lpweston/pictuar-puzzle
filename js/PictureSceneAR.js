@@ -24,8 +24,8 @@ export default class PictureSceneAR extends Component {
       <ViroARScene>
         <ViroARImageMarker target={'targetOne'}>
           <ViroImage
-            height={0.2}
-            width={0.2}
+            height={0.1}
+            width={0.1}
             source={require('./res/pic-1.jpeg')}
             position={[0, 0.1, 0]}
             rotation={[-90, 0, 0]}
@@ -33,8 +33,8 @@ export default class PictureSceneAR extends Component {
         </ViroARImageMarker>
         <ViroARImageMarker target={'targetTwo'}>
           <ViroImage
-            height={0.2}
-            width={0.2}
+            height={0.1}
+            width={0.1}
             source={require('./res/pic-2.jpg')}
             position={[0, 0.1, 0]}
             rotation={[-90, 0, 0]}
@@ -42,8 +42,8 @@ export default class PictureSceneAR extends Component {
         </ViroARImageMarker>
         <ViroARImageMarker target={'targetThree'}>
           <ViroImage
-            height={0.2}
-            width={0.2}
+            height={0.1}
+            width={0.1}
             source={require('./res/pic-3.jpg')}
             position={[0, 0.1, 0]}
             rotation={[-90, 0, 0]}
@@ -51,14 +51,14 @@ export default class PictureSceneAR extends Component {
         </ViroARImageMarker>
         <ViroARImageMarker target={'targetFour'}>
           <ViroImage
-            height={0.2}
-            width={0.2}
+            height={0.1}
+            width={0.1}
             source={require('./res/pic-4.jpg')}
             position={[0, 0.1, 0]}
             rotation={[-90, 0, 0]}
           />
         </ViroARImageMarker>
-        <ViroARImageMarker target={'targetWhole'}>
+        {/* <ViroARImageMarker target={'targetWhole'}>
           <ViroText
             style={styles.textStyle}
             width={1}
@@ -67,7 +67,7 @@ export default class PictureSceneAR extends Component {
             position={[0, 0.15, 0]}
             rotation={[-90, 0, 0]}
           />
-        </ViroARImageMarker>
+        </ViroARImageMarker> */}
       </ViroARScene>
     );
   }
@@ -75,43 +75,43 @@ export default class PictureSceneAR extends Component {
 
 ViroARTrackingTargets.createTargets({
   targetOne: {
-    source: require('./res/1.png'),
+    source: require('./res/b1.png'),
     orientation: 'Up',
-    physicalWidth: 0.2 // real world width in meters
+    physicalWidth: 0.1 // real world width in meters
   }
 });
 
 ViroARTrackingTargets.createTargets({
   targetTwo: {
-    source: require('./res/2.png'),
+    source: require('./res/b2.png'),
     orientation: 'Up',
-    physicalWidth: 0.2 // real world width in meters
+    physicalWidth: 0.1 // real world width in meters
   }
 });
 
 ViroARTrackingTargets.createTargets({
   targetThree: {
-    source: require('./res/3.png'),
+    source: require('./res/b3.png'),
     orientation: 'Up',
-    physicalWidth: 0.2 // real world width in meters
+    physicalWidth: 0.1 // real world width in meters
   }
 });
 
 ViroARTrackingTargets.createTargets({
   targetFour: {
-    source: require('./res/4.png'),
+    source: require('./res/b4.png'),
     orientation: 'Up',
-    physicalWidth: 0.2 // real world width in meters
+    physicalWidth: 0.1 // real world width in meters
   }
 });
 
-ViroARTrackingTargets.createTargets({
-  targetWhole: {
-    source: require('./res/whole.jpg'),
-    orientation: 'Up',
-    physicalWidth: 0.4 // real world width in meters
-  }
-});
+// ViroARTrackingTargets.createTargets({
+//   targetWhole: {
+//     source: require('./res/whole.jpg'),
+//     orientation: 'Up',
+//     physicalWidth: 0.4 // real world width in meters
+//   }
+// });
 
 var styles = StyleSheet.create({
   textStyle: {
