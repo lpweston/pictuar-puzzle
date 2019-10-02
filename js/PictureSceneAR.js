@@ -73,9 +73,17 @@ export default class PictureSceneAR extends Component {
   }
 }
 
+let arr = [1, 2, 3, 4];
+
+const shuffleArr = arr => {
+  arr.sort(() => Math.random() - 0.5);
+};
+
+arr = shuffleArr(arr);
+
 ViroARTrackingTargets.createTargets({
   targetOne: {
-    source: require('./res/b1.png'),
+    source: require(`./res/c${arr[0]}.png`),
     orientation: 'Up',
     physicalWidth: 0.1 // real world width in meters
   }
@@ -83,7 +91,7 @@ ViroARTrackingTargets.createTargets({
 
 ViroARTrackingTargets.createTargets({
   targetTwo: {
-    source: require('./res/b2.png'),
+    source: require(`./res/c${arr[1]}.png`),
     orientation: 'Up',
     physicalWidth: 0.1 // real world width in meters
   }
@@ -91,7 +99,7 @@ ViroARTrackingTargets.createTargets({
 
 ViroARTrackingTargets.createTargets({
   targetThree: {
-    source: require('./res/b3.png'),
+    source: require(`./res/c${arr[2]}.png`),
     orientation: 'Up',
     physicalWidth: 0.1 // real world width in meters
   }
@@ -99,7 +107,7 @@ ViroARTrackingTargets.createTargets({
 
 ViroARTrackingTargets.createTargets({
   targetFour: {
-    source: require('./res/b4.png'),
+    source: require(`./res/c${arr[3]}.png`),
     orientation: 'Up',
     physicalWidth: 0.1 // real world width in meters
   }
