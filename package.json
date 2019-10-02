@@ -1,23 +1,16 @@
 {
-  "name": "pictuar-puzzle",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "PictuARPuzzle",
+  "version": "0.0.1",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prestart": "./node_modules/react-viro/bin/run_ngrok.sh",
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/lpweston/pictuar-puzzle.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/lpweston/pictuar-puzzle/issues"
-  },
-  "homepage": "https://github.com/lpweston/pictuar-puzzle#readme",
-  "devDependencies": {
+  "dependencies": {
+    "react": "16.8.3",
+    "react-native": "0.59.3",
+    "react-viro": "2.16.0",
     "eslint": "^6.5.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-plugin-import": "^2.18.2",
@@ -25,5 +18,16 @@
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^1.7.0",
     "husky": "^3.0.7"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.2",
+    "@babel/runtime": "^7.6.2",
+    "babel-jest": "^24.9.0",
+    "jest": "^24.9.0",
+    "metro-react-native-babel-preset": "^0.56.0",
+    "react-test-renderer": "16.8.3"
+  },
+  "jest": {
+    "preset": "react-native"
   }
 }

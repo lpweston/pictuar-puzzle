@@ -1,1 +1,0 @@
-# PictuAR Puzzle
