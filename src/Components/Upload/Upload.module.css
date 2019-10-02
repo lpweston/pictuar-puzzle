@@ -1,0 +1,14 @@
+.upload {
+  display: flex;
+  justify-content: center;
+}
+
+.uploadButton {
+  display: flex;
+  justify-content: center;
+}
+
+.uploadTitle {
+  display: flex;
+  justify-content: center;
+}
