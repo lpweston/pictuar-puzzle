@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { Text, View, StyleSheet, TouchableHighlight } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  TouchableHighlight,
+  Image
+} from "react-native";
 
 import { ViroARSceneNavigator } from "react-viro";
 
@@ -32,6 +38,15 @@ export default class GameAR extends Component {
     );
     this._exitViro = this._exitViro.bind(this);
   }
+
+  static navigationOptions = {
+    headerTitle: (
+      <Image
+        style={{ width: 100, height: "100%", padding: 20 }}
+        source={require("../assets/pictuar-puzzle_logo.png")}
+      />
+    )
+  };
 
   // Replace this function with the contents of _getVRNavigator() or _getARNavigator()
   // if you are building a specific type of experience.

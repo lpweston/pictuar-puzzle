@@ -18,16 +18,20 @@ export default class HomeScreen extends Component {
     return (
       <View style={styles.container}>
         <Image
-          style={{ width: 200, height: 200 }}
-          source={require("../assets/boat_logo.png")}
+          style={styles.logo}
+          source={require("../assets/pictuar-puzzle_logo-2.png")}
         />
-        <Text style={styles.title}>PictuAR Puzzle!</Text>
-        <Text style={styles.subHeading}>Login or create new user below:</Text>
-        <TextInput style={styles.input} placeholder="Username" />
+        <Text style={styles.subHeading}>Login or create new a user below:</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Username"
+          placeholderTextColor="#BEBEBE"
+        />
         <TextInput
           style={styles.input}
           secureTextEntry
           placeholder="Password"
+          placeholderTextColor="#BEBEBE"
         />
         <View style={styles.btnContainer}>
           <TouchableOpacity
@@ -55,7 +59,7 @@ const styles = StyleSheet.create({
     paddingTop: 50,
     flex: 1,
     alignItems: "center",
-    backgroundColor: "#E0DACC"
+    backgroundColor: "#75A0B9"
   },
   title: {
     paddingTop: 30,
@@ -65,8 +69,10 @@ const styles = StyleSheet.create({
   },
   subHeading: {
     textAlign: "center",
-    color: "#333333",
-    marginBottom: 5
+    marginBottom: 5,
+    fontWeight: "bold",
+    paddingTop: 50,
+    color: "white"
   },
   input: {
     width: "60%",
@@ -82,13 +88,19 @@ const styles = StyleSheet.create({
     width: "60%"
   },
   userBtn: {
-    backgroundColor: "#F0ECE4",
+    backgroundColor: "#92BFD7",
     padding: 15,
     width: "45%",
     borderRadius: 10
   },
   textBtn: {
     fontSize: 15,
-    textAlign: "center"
+    textAlign: "center",
+    color: "white",
+    fontWeight: "bold"
+  },
+  logo: {
+    width: "95%",
+    height: "32%"
   }
 });

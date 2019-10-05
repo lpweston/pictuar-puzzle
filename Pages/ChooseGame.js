@@ -7,61 +7,143 @@ import {
   Image,
   TextInput,
   Button,
-  TouchableOpacity
+  TouchableOpacity,
+  ActivityIndicator
 } from "react-native";
 
 export default class ChooseGame extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoading: true,
+      dataSource: null
+    };
+  }
+
+  componentDidMount() {
+    return fetch("https://pictuar-puzzle.herokuapp.com/images/")
+      .then(response => response.json())
+      .then(responseJson => {
+        this.setState({
+          isLoading: false,
+          dataSource: responseJson
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
   static navigationOptions = {
-    // title: "title"
+    headerTitle: (
+      <Image
+        style={{ width: 100, height: "100%", padding: 15 }}
+        source={require("../assets/pictuar-puzzle_logo.png")}
+      />
+    )
   };
   render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.title}>Choose a game!</Text>
-        {/* <TouchableOpacity
-            style={styles.userBtn}
-            onPress={() => this.props.navigation.navigate("GameAR")}
-            >
-            <Text style={styles.textBtn}>Click</Text>
-        </TouchableOpacity> */}
+    if (this.state.isLoading) {
+      return (
+        <View style={styles.container}>
+          <ActivityIndicator />
+        </View>
+      );
+    } else {
+      let images = this.state.dataSource.map((val, key) => {
+        return (
+          <View key={key} style={styles.container}>
+            <Image style={styles.imageThumb} source={{ uri: val.url }} />
+          </View>
+        );
+      });
 
-        <View>
-          <Image
-            style={{
-              width: 150,
-              height: 150,
-              borderRadius: 10,
-              borderWidth: 2,
-              borderColor: "white"
-            }}
-            source={require("../assets/game_parrots.jpg")}
-          />
-        </View>
-        <View style={styles.btnContainer}>
-          <TouchableOpacity
-            style={styles.userBtn}
-            onPress={() => this.props.navigation.navigate("GameAR")}
-          >
-            <Text style={styles.textBtn}>Play!</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    );
+      return (
+        <>
+          <View style={styles.container}>
+            <Text style={styles.title}>Choose a puzzle!</Text>
+            <View style={styles.imageBox}>
+              <View style={{ padding: 10 }}>
+                <TouchableOpacity
+                  onPress={() => this.props.navigation.navigate("GameAR")}
+                >
+                  {images[0]}
+                </TouchableOpacity>
+              </View>
+              <View style={{ padding: 10 }}>
+                <TouchableOpacity
+                  onPress={() => this.props.navigation.navigate("GameAR")}
+                >
+                  {images[1]}
+                </TouchableOpacity>
+              </View>
+              <View style={{ padding: 10 }}>
+                <TouchableOpacity
+                  onPress={() => this.props.navigation.navigate("GameAR")}
+                >
+                  {images[2]}
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+          <View style={styles.difficultyContainer}>
+            <Text style={styles.title}>Choose your difficulty:</Text>
+            <View style={styles.imageBox}>
+              <View style={{ padding: 10, paddingTop: 40 }}>
+                <TouchableOpacity
+                  onPress={() => this.props.navigation.navigate("GameAR")}
+                >
+                  <Image
+                    style={styles.imageThumb}
+                    source={require("../assets/grid2x2.png")}
+                  ></Image>
+                </TouchableOpacity>
+              </View>
+              <View style={{ padding: 10, paddingTop: 40 }}>
+                <TouchableOpacity
+                  onPress={() => this.props.navigation.navigate("GameAR")}
+                >
+                  <Image
+                    style={styles.imageThumb}
+                    source={require("../assets/grid3x3.png")}
+                  ></Image>
+                </TouchableOpacity>
+              </View>
+              <View style={{ padding: 10, paddingTop: 40 }}>
+                <TouchableOpacity
+                  onPress={() => this.props.navigation.navigate("GameAR")}
+                >
+                  <Image
+                    style={styles.imageThumb}
+                    source={require("../assets/grid2x2.png")}
+                  ></Image>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        </>
+      );
+    }
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 50,
+    paddingTop: 40,
     flex: 1,
     alignItems: "center",
-    backgroundColor: "#E0DACC"
+    backgroundColor: "#75A0B9"
+  },
+  difficultyContainer: {
+    flex: 1,
+    alignItems: "center",
+    backgroundColor: "#75A0B9"
   },
   title: {
-    paddingTop: 30,
     fontSize: 20,
     textAlign: "center",
-    margin: 10
+    fontWeight: "bold",
+    color: "white"
   },
   subHeading: {
     textAlign: "center",
@@ -80,14 +162,27 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingTop: 10
   },
-  userBtn: {
-    backgroundColor: "#F0ECE4",
-    padding: 15,
-    width: "35%",
-    borderRadius: 10
-  },
   textBtn: {
     fontSize: 15,
-    textAlign: "center"
+    textAlign: "center",
+    fontWeight: "bold",
+    color: "white"
+  },
+  imageThumb: {
+    width: 100,
+    height: 100,
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: "white"
+  },
+  images: {
+    flexDirection: "row"
+  },
+  logo: {
+    width: "95%",
+    height: "28%"
+  },
+  imageBox: {
+    flexDirection: "row"
   }
 });
