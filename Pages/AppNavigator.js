@@ -1,15 +1,3 @@
-import React, { Component } from "react";
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TextInput,
-  Button,
-  TouchableOpacity
-} from "react-native";
-
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 
@@ -17,13 +5,17 @@ import HomeScreen from "../Pages/HomeScreen";
 import SignUp from "../Pages/SignUp";
 import ChooseGame from "../Pages/ChooseGame";
 import GameAR from "../Pages/GameAR";
+import Profile from "../Pages/Profile";
+import Leaderboard from "../Pages/Leaderboard";
 
 const RootStack = createStackNavigator(
   {
     Home: HomeScreen,
     SignUp: SignUp,
     ChooseGame: ChooseGame,
-    GameAR: GameAR
+    GameAR: GameAR,
+    Profile: Profile,
+    Leaderboard: Leaderboard
   },
   {
     initalRouteName: "Home",

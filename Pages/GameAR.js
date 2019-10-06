@@ -4,7 +4,8 @@ import {
   View,
   StyleSheet,
   TouchableHighlight,
-  Image
+  Image,
+  TouchableOpacity
 } from "react-native";
 
 import { ViroARSceneNavigator } from "react-viro";
@@ -13,14 +14,11 @@ var sharedProps = {
   apiKey: "AD45DBB9-F152-4A83-AA74-086AAD562BA6"
 };
 
-// Sets the default scene you want for AR and VR
 var InitialARScene = require("../js/PictureSceneAR");
 
 var UNSET = "UNSET";
 var AR_NAVIGATOR_TYPE = "AR";
 
-// This determines which type of experience to launch in, or UNSET, if the user should
-// be presented with a choice of AR or VR. By default, we offer the user a choice.
 var defaultNavigatorType = UNSET;
 
 export default class GameAR extends Component {
@@ -40,6 +38,22 @@ export default class GameAR extends Component {
   }
 
   static navigationOptions = {
+    headerRight: (
+      <TouchableOpacity
+        style={{
+          color: "white",
+          marginRight: 10,
+          borderRadius: 5,
+          borderWidth: 2,
+          borderColor: "#92BFD7",
+          backgroundColor: "#92BFD7"
+        }}
+      >
+        <Text style={{ fontSize: 16, padding: 5, color: "white" }}>
+          Profile
+        </Text>
+      </TouchableOpacity>
+    ),
     headerTitle: (
       <Image
         style={{ width: 100, height: "100%", padding: 20 }}
@@ -48,8 +62,6 @@ export default class GameAR extends Component {
     )
   };
 
-  // Replace this function with the contents of _getVRNavigator() or _getARNavigator()
-  // if you are building a specific type of experience.
   render() {
     if (this.state.navigatorType == UNSET) {
       return this._getExperienceSelector();
@@ -58,26 +70,24 @@ export default class GameAR extends Component {
     }
   }
 
-  // Presents the user with a choice of an AR or VR experience
   _getExperienceSelector() {
     return (
       <View style={localStyles.outer}>
         <View style={localStyles.inner}>
-          <Text style={localStyles.titleText}>ARRRRR You ready?</Text>
+          <Text style={localStyles.titleText}>ARRR you ready?</Text>
 
           <TouchableHighlight
-            style={localStyles.buttons}
+            style={localStyles.userBtn}
             onPress={this._getExperienceButtonOnPress(AR_NAVIGATOR_TYPE)}
             underlayColor={"#68a0ff"}
           >
-            <Text style={localStyles.buttonText}>Start</Text>
+            <Text style={localStyles.textBtn}>Start game!</Text>
           </TouchableHighlight>
         </View>
       </View>
     );
   }
 
-  // Returns the ViroARSceneNavigator which will start the AR experience
   _getARNavigator() {
     return (
       <ViroARSceneNavigator
@@ -87,8 +97,6 @@ export default class GameAR extends Component {
     );
   }
 
-  // This function returns an anonymous/lambda function to be used
-  // by the experience selector buttons
   _getExperienceButtonOnPress(navigatorType) {
     return () => {
       this.setState({
@@ -97,7 +105,6 @@ export default class GameAR extends Component {
     };
   }
 
-  // This function "exits" Viro by setting the navigatorType to UNSET.
   _exitViro() {
     this.setState({
       navigatorType: UNSET
@@ -108,31 +115,34 @@ export default class GameAR extends Component {
 var localStyles = StyleSheet.create({
   viroContainer: {
     flex: 1,
-    backgroundColor: "black"
+    alignItems: "center",
+    backgroundColor: "#75A0B9"
   },
   outer: {
     flex: 1,
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "black"
+    backgroundColor: "#75A0B9"
   },
   inner: {
     flex: 1,
     flexDirection: "column",
     alignItems: "center",
-    backgroundColor: "black"
+    backgroundColor: "#75A0B9"
   },
   titleText: {
-    paddingTop: 30,
+    paddingTop: 0,
     paddingBottom: 20,
     color: "#fff",
     textAlign: "center",
-    fontSize: 25
+    fontSize: 25,
+    fontWeight: "bold"
   },
   buttonText: {
     color: "#fff",
     textAlign: "center",
-    fontSize: 20
+    fontSize: 20,
+    fontWeight: "bold"
   },
   buttons: {
     height: 80,
@@ -157,6 +167,48 @@ var localStyles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     borderColor: "#fff"
+  },
+  title: {
+    paddingTop: 30,
+    fontSize: 20,
+    textAlign: "center",
+    margin: 10
+  },
+  subHeading: {
+    textAlign: "center",
+    marginBottom: 5,
+    fontWeight: "bold",
+    paddingTop: 50,
+    color: "white"
+  },
+  input: {
+    width: "60%",
+    backgroundColor: "#F0F0F0",
+    padding: 10,
+    margin: 4,
+    borderRadius: 8
+  },
+  btnContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingTop: 10,
+    width: "60%"
+  },
+  userBtn: {
+    backgroundColor: "#92BFD7",
+    padding: 15,
+    width: "50%",
+    borderRadius: 10
+  },
+  textBtn: {
+    fontSize: 15,
+    textAlign: "center",
+    color: "white",
+    fontWeight: "bold"
+  },
+  logo: {
+    width: "95%",
+    height: "32%"
   }
 });
 

@@ -10,18 +10,30 @@ import {
   TouchableOpacity
 } from "react-native";
 
-export default class HomeScreen extends Component {
+export default class Profile extends Component {
   static navigationOptions = {
-    header: null
+    headerTitle: (
+      <Image
+        style={{ width: 100, height: "100%", padding: 20 }}
+        source={require("../assets/pictuar-puzzle_logo.png")}
+      />
+    )
   };
   render() {
     return (
       <View style={styles.container}>
-        <Image
-          style={styles.logo}
-          source={require("../assets/pictuar-puzzle_logo-2.png")}
+        <Text style={styles.title}>User Profile:</Text>
+        <Text style={styles.subHeading}></Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Forename"
+          placeholderTextColor="#BEBEBE"
         />
-        <Text style={styles.subHeading}>Login or create new a user below:</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Surname"
+          placeholderTextColor="#BEBEBE"
+        />
         <TextInput
           style={styles.input}
           placeholder="Username"
@@ -36,17 +48,9 @@ export default class HomeScreen extends Component {
         <View style={styles.btnContainer}>
           <TouchableOpacity
             style={styles.userBtn}
-            onPress={() => this.props.navigation.navigate("ChooseGame")}
+            onPress={() => this.props.navigation.navigate("Create")}
           >
-            <Text style={styles.textBtn}>Login</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.userBtn}>
-            <Text
-              style={styles.textBtn}
-              onPress={() => this.props.navigation.navigate("SignUp")}
-            >
-              Sign Up
-            </Text>
+            <Text style={styles.textBtn}>Create</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -56,7 +60,7 @@ export default class HomeScreen extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 50,
+    paddingTop: 20,
     flex: 1,
     alignItems: "center",
     backgroundColor: "#75A0B9"
@@ -65,14 +69,16 @@ const styles = StyleSheet.create({
     paddingTop: 30,
     fontSize: 20,
     textAlign: "center",
-    margin: 10
+    margin: 10,
+    paddingLeft: 5,
+    paddingRight: 5,
+    color: "white",
+    fontWeight: "bold"
   },
   subHeading: {
     textAlign: "center",
-    marginBottom: 5,
-    fontWeight: "bold",
-    paddingTop: 50,
-    color: "white"
+    color: "#333333",
+    marginBottom: 5
   },
   input: {
     width: "60%",
@@ -84,8 +90,7 @@ const styles = StyleSheet.create({
   btnContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingTop: 10,
-    width: "60%"
+    paddingTop: 10
   },
   userBtn: {
     backgroundColor: "#92BFD7",
@@ -98,9 +103,5 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "white",
     fontWeight: "bold"
-  },
-  logo: {
-    width: "95%",
-    height: "30%"
   }
 });

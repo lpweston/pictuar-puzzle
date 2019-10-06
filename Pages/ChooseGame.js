@@ -35,6 +35,24 @@ export default class ChooseGame extends Component {
   }
 
   static navigationOptions = {
+    headerRight: (
+      <TouchableOpacity
+        style={{
+          marginRight: 10,
+          borderRadius: 5,
+          borderWidth: 2,
+          borderColor: "#92BFD7",
+          backgroundColor: "#92BFD7"
+        }}
+      >
+        <Text
+          onPress={() => this.props.navigation.navigate("Profile")}
+          style={{ fontSize: 16, padding: 5, color: "white" }}
+        >
+          Profile
+        </Text>
+      </TouchableOpacity>
+    ),
     headerTitle: (
       <Image
         style={{ width: 100, height: "100%", padding: 15 }}
@@ -63,21 +81,21 @@ export default class ChooseGame extends Component {
           <View style={styles.container}>
             <Text style={styles.title}>Choose a puzzle!</Text>
             <View style={styles.imageBox}>
-              <View style={{ padding: 10 }}>
+              <View style={{ padding: 10, paddingTop: 30 }}>
                 <TouchableOpacity
                   onPress={() => this.props.navigation.navigate("GameAR")}
                 >
                   {images[0]}
                 </TouchableOpacity>
               </View>
-              <View style={{ padding: 10 }}>
+              <View style={{ padding: 10, paddingTop: 30 }}>
                 <TouchableOpacity
                   onPress={() => this.props.navigation.navigate("GameAR")}
                 >
                   {images[1]}
                 </TouchableOpacity>
               </View>
-              <View style={{ padding: 10 }}>
+              <View style={{ padding: 10, paddingTop: 30 }}>
                 <TouchableOpacity
                   onPress={() => this.props.navigation.navigate("GameAR")}
                 >
@@ -86,6 +104,27 @@ export default class ChooseGame extends Component {
               </View>
             </View>
           </View>
+          <View style={styles.colourContainer}>
+            <View style={styles.btnContainer}>
+              <TouchableOpacity
+                style={styles.userBtn}
+                onPress={() => this.props.navigation.navigate("Create")}
+              >
+                <Text style={styles.textBtn}>Upload Image!</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+          <View style={styles.colourContainer}>
+            <View style={styles.btnContainer}>
+              <TouchableOpacity
+                style={styles.userBtn}
+                onPress={() => this.props.navigation.navigate("Leaderboard")}
+              >
+                <Text style={styles.textBtn}>Leaderboard</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+
           <View style={styles.difficultyContainer}>
             <Text style={styles.title}>Choose your difficulty:</Text>
             <View style={styles.imageBox}>
@@ -115,7 +154,7 @@ export default class ChooseGame extends Component {
                 >
                   <Image
                     style={styles.imageThumb}
-                    source={require("../assets/grid2x2.png")}
+                    source={require("../assets/grid4x4.png")}
                   ></Image>
                 </TouchableOpacity>
               </View>
@@ -129,17 +168,29 @@ export default class ChooseGame extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 40,
+    paddingTop: 15,
     flex: 1,
     alignItems: "center",
     backgroundColor: "#75A0B9"
+  },
+  colourContainer: {
+    alignItems: "center",
+    backgroundColor: "#75A0B9",
+    paddingBottom: 10
   },
   difficultyContainer: {
     flex: 1,
     alignItems: "center",
     backgroundColor: "#75A0B9"
   },
+  buttonContainer: {
+    paddingTop: 10,
+    flex: 1,
+    alignItems: "center",
+    backgroundColor: "#75A0B9"
+  },
   title: {
+    paddingTop: 10,
     fontSize: 20,
     textAlign: "center",
     fontWeight: "bold",
@@ -158,9 +209,7 @@ const styles = StyleSheet.create({
     borderRadius: 8
   },
   btnContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingTop: 10
+    justifyContent: "space-between"
   },
   textBtn: {
     fontSize: 15,
@@ -184,5 +233,20 @@ const styles = StyleSheet.create({
   },
   imageBox: {
     flexDirection: "row"
+  },
+  rightHeader: {
+    color: "white"
+  },
+  userBtn: {
+    backgroundColor: "#92BFD7",
+    padding: 15,
+    width: "55%",
+    borderRadius: 10
+  },
+  textBtn: {
+    fontSize: 15,
+    textAlign: "center",
+    color: "white",
+    fontWeight: "bold"
   }
 });
