@@ -23,7 +23,9 @@ export default class ViroSample extends Component {
 
     this.state = {
       navigatorType: defaultNavigatorType,
-      sharedProps: sharedProps
+      sharedProps: sharedProps,
+      // viroAppProps: { imageId: 1 },
+      imageId: 1
     };
     this._getExperienceSelector = this._getExperienceSelector.bind(this);
     this._getARNavigator = this._getARNavigator.bind(this);
@@ -67,7 +69,11 @@ export default class ViroSample extends Component {
     return (
       <ViroARSceneNavigator
         {...this.state.sharedProps}
-        initialScene={{ scene: InitialARScene }}
+        initialScene={{
+          scene: InitialARScene,
+          passProps: { imageId: this.state.imageId }
+        }}
+        // viroAppProps={this.state.viroAppProps}
       />
     );
   }

@@ -15,76 +15,94 @@ export default class PictureSceneAR extends Component {
     super();
 
     this.state = {
-      id: 1,
-      images: []
+      tiles: []
     };
   }
 
   componentDidMount() {
-    const { id } = this.state;
-    this.fetchImages(id);
+    const { imageId } = this.props;
+    this.fetchImages(imageId);
   }
 
   render() {
+    const { images } = this.state;
+    console.log('rendering');
+    if (images) {
+      return (
+        <ViroARScene>
+          <ViroARImageMarker target={'targetOne'}>
+            <ViroImage
+              height={0.1}
+              width={0.1}
+              source={{ uri: images[0].url }}
+              position={[0, 0.1, 0]}
+              rotation={[-90, 0, 0]}
+            />
+          </ViroARImageMarker>
+          <ViroARImageMarker target={'targetTwo'}>
+            <ViroImage
+              height={0.1}
+              width={0.1}
+              source={{ uri: images[1].url }}
+              position={[0, 0.1, 0]}
+              rotation={[-90, 0, 0]}
+            />
+          </ViroARImageMarker>
+          <ViroARImageMarker target={'targetThree'}>
+            <ViroImage
+              height={0.1}
+              width={0.1}
+              source={{ uri: images[2].url }}
+              position={[0, 0.1, 0]}
+              rotation={[-90, 0, 0]}
+            />
+          </ViroARImageMarker>
+          <ViroARImageMarker target={'targetFour'}>
+            <ViroImage
+              height={0.1}
+              width={0.1}
+              source={{ uri: images[3].url }}
+              position={[0, 0.1, 0]}
+              rotation={[-90, 0, 0]}
+            />
+          </ViroARImageMarker>
+          {/* <ViroARImageMarker target={'targetWhole'}>
+            <ViroText
+              style={styles.textStyle}
+              width={1}
+              height={1}
+              text="You win!"
+              position={[0, 0.15, 0]}
+              rotation={[-90, 0, 0]}
+            />
+          </ViroARImageMarker> */}
+        </ViroARScene>
+      );
+    }
     return (
       <ViroARScene>
-        <ViroARImageMarker target={'targetOne'}>
-          <ViroImage
-            height={0.1}
-            width={0.1}
-            source={require('./res/pic-1.jpeg')}
-            position={[0, 0.1, 0]}
-            rotation={[-90, 0, 0]}
-          />
-        </ViroARImageMarker>
-        <ViroARImageMarker target={'targetTwo'}>
-          <ViroImage
-            height={0.1}
-            width={0.1}
-            source={require('./res/pic-2.jpg')}
-            position={[0, 0.1, 0]}
-            rotation={[-90, 0, 0]}
-          />
-        </ViroARImageMarker>
-        <ViroARImageMarker target={'targetThree'}>
-          <ViroImage
-            height={0.1}
-            width={0.1}
-            source={require('./res/pic-3.jpg')}
-            position={[0, 0.1, 0]}
-            rotation={[-90, 0, 0]}
-          />
-        </ViroARImageMarker>
-        <ViroARImageMarker target={'targetFour'}>
-          <ViroImage
-            height={0.1}
-            width={0.1}
-            source={require('./res/pic-4.jpg')}
-            position={[0, 0.1, 0]}
-            rotation={[-90, 0, 0]}
-          />
-        </ViroARImageMarker>
-        {/* <ViroARImageMarker target={'targetWhole'}>
-          <ViroText
-            style={styles.textStyle}
-            width={1}
-            height={1}
-            text="You win!"
-            position={[0, 0.15, 0]}
-            rotation={[-90, 0, 0]}
-          />
-        </ViroARImageMarker> */}
+        <ViroText
+          style={styles.textStyle}
+          width={1}
+          height={1}
+          text="You win!"
+          position={[0, 0.15, 0]}
+          rotation={[-90, 0, 0]}
+        />
       </ViroARScene>
     );
   }
   fetchImages = id => {
-    api.getImages(id);
+    console.log('fetching images');
+    api.getImages(id).then(imageArr => {
+      this.setState({ images: imageArr });
+    });
   };
 }
 
 ViroARTrackingTargets.createTargets({
   targetOne: {
-    source: require('./res/g1.png'),
+    source: require('./res/chest.png'),
     orientation: 'Up',
     physicalWidth: 0.1 // real world width in meters
   }
@@ -92,7 +110,7 @@ ViroARTrackingTargets.createTargets({
 
 ViroARTrackingTargets.createTargets({
   targetTwo: {
-    source: require('./res/g2.png'),
+    source: require('./res/money.png'),
     orientation: 'Up',
     physicalWidth: 0.1 // real world width in meters
   }
@@ -100,7 +118,7 @@ ViroARTrackingTargets.createTargets({
 
 ViroARTrackingTargets.createTargets({
   targetThree: {
-    source: require('./res/g3.png'),
+    source: require('./res/skull.png'),
     orientation: 'Up',
     physicalWidth: 0.1 // real world width in meters
   }
