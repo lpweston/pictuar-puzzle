@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import * as api from './api';
 import { StyleSheet } from 'react-native';
 
 import {
@@ -14,7 +14,15 @@ export default class PictureSceneAR extends Component {
   constructor() {
     super();
 
-    this.state = {};
+    this.state = {
+      id: 1,
+      images: []
+    };
+  }
+
+  componentDidMount() {
+    const { id } = this.state;
+    this.fetchImages(id);
   }
 
   render() {
@@ -69,6 +77,9 @@ export default class PictureSceneAR extends Component {
       </ViroARScene>
     );
   }
+  fetchImages = id => {
+    api.getImages(id);
+  };
 }
 
 ViroARTrackingTargets.createTargets({
