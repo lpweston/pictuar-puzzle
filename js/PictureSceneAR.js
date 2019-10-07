@@ -26,7 +26,6 @@ export default class PictureSceneAR extends Component {
 
   render() {
     const { images } = this.state;
-    console.log('rendering');
     if (images) {
       return (
         <ViroARScene>
@@ -93,7 +92,6 @@ export default class PictureSceneAR extends Component {
     );
   }
   fetchImages = id => {
-    console.log('fetching images');
     api.getImages(id).then(imageArr => {
       this.setState({ images: imageArr });
     });
