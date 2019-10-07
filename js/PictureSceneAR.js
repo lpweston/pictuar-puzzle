@@ -1,5 +1,3 @@
-'use strict';
-
 import React, { Component } from 'react';
 
 import { StyleSheet } from 'react-native';
@@ -11,19 +9,6 @@ import {
   ViroImage,
   ViroText
 } from 'react-viro';
-
-const arr = [
-  require('./res/c1.png'),
-  require('./res/c2.png'),
-  require('./res/c3.png'),
-  require('./res/c4.png')
-];
-
-function shuffleArr(arr) {
-  arr.sort(() => Math.random() - 0.5);
-}
-
-shuffleArr(arr);
 
 export default class PictureSceneAR extends Component {
   constructor() {
@@ -88,7 +73,7 @@ export default class PictureSceneAR extends Component {
 
 ViroARTrackingTargets.createTargets({
   targetOne: {
-    source: arr[0],
+    source: require('./res/g1.png'),
     orientation: 'Up',
     physicalWidth: 0.1 // real world width in meters
   }
@@ -96,7 +81,7 @@ ViroARTrackingTargets.createTargets({
 
 ViroARTrackingTargets.createTargets({
   targetTwo: {
-    source: arr[1],
+    source: require('./res/g2.png'),
     orientation: 'Up',
     physicalWidth: 0.1 // real world width in meters
   }
@@ -104,7 +89,7 @@ ViroARTrackingTargets.createTargets({
 
 ViroARTrackingTargets.createTargets({
   targetThree: {
-    source: arr[2],
+    source: require('./res/g3.png'),
     orientation: 'Up',
     physicalWidth: 0.1 // real world width in meters
   }
@@ -112,7 +97,7 @@ ViroARTrackingTargets.createTargets({
 
 ViroARTrackingTargets.createTargets({
   targetFour: {
-    source: arr[3],
+    source: require('./res/g4.png'),
     orientation: 'Up',
     physicalWidth: 0.1 // real world width in meters
   }
@@ -120,9 +105,9 @@ ViroARTrackingTargets.createTargets({
 
 // ViroARTrackingTargets.createTargets({
 //   targetWhole: {
-//     source: require('./res/whole.jpg'),
+//     source: require('./res/combined.png'),
 //     orientation: 'Up',
-//     physicalWidth: 0.4 // real world width in meters
+//     physicalWidth: 0.2 // real world width in meters
 //   }
 // });
 
