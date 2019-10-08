@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+const Frisbee = require("frisbee");
+
 import {
   Platform,
   StyleSheet,
@@ -11,6 +13,8 @@ import {
   ActivityIndicator
 } from "react-native";
 
+const api = new Frisbee({ baseURI: "https://pictuar-puzzle.herokuapp.com/" });
+
 export default class ChooseGame extends Component {
   constructor(props) {
     super(props);
@@ -21,9 +25,10 @@ export default class ChooseGame extends Component {
   }
 
   componentDidMount() {
-    return fetch("https://pictuar-puzzle.herokuapp.com/images/")
-      .then(response => response.json())
+    return api
+      .get("images/")
       .then(responseJson => {
+        console.log(responseJson);
         this.setState({
           isLoading: false,
           dataSource: responseJson
@@ -68,7 +73,7 @@ export default class ChooseGame extends Component {
         </View>
       );
     } else {
-      let images = this.state.dataSource.map((val, key) => {
+      let images = this.state.dataSource.body.map((val, key) => {
         return (
           <View key={key} style={styles.container}>
             <Image style={styles.imageThumb} source={{ uri: val.url }} />

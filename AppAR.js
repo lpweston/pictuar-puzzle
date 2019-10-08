@@ -8,7 +8,7 @@ var sharedProps = {
 };
 
 // Sets the default scene you want for AR and VR
-var InitialARScene = require("../js/PictureSceneAR");
+var InitialARScene = require("./js/PictureSceneAR");
 
 var UNSET = "UNSET";
 var AR_NAVIGATOR_TYPE = "AR";

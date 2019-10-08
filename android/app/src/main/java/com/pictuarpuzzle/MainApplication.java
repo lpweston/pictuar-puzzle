@@ -3,6 +3,9 @@ package com.pictuarpuzzle;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import cl.json.RNSharePackage;
+import com.RNFetchBlob.RNFetchBlobPackage;
+import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.swmansion.rnscreens.RNScreensPackage;
 import com.swmansion.reanimated.ReanimatedPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
@@ -26,6 +29,9 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNSharePackage(),
+            new RNFetchBlobPackage(),
+            new FBSDKPackage(),
             new RNScreensPackage(),
             new ReanimatedPackage(),
             new RNGestureHandlerPackage()

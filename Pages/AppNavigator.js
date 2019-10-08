@@ -7,6 +7,8 @@ import ChooseGame from "../Pages/ChooseGame";
 import GameAR from "../Pages/GameAR";
 import Profile from "../Pages/Profile";
 import Leaderboard from "../Pages/Leaderboard";
+import Login from "../Pages/Login";
+import test from "../Pages/test";
 
 const RootStack = createStackNavigator(
   {
@@ -16,6 +18,8 @@ const RootStack = createStackNavigator(
     GameAR: GameAR,
     Profile: Profile,
     Leaderboard: Leaderboard
+    // Login: Login,
+    // test: test
   },
   {
     initalRouteName: "Home",
