@@ -25,7 +25,7 @@ export default class ViroSample extends Component {
       navigatorType: defaultNavigatorType,
       sharedProps: sharedProps,
       // viroAppProps: { imageId: 1 },
-      imageId: 1
+      imageId: '1'
     };
     this._getExperienceSelector = this._getExperienceSelector.bind(this);
     this._getARNavigator = this._getARNavigator.bind(this);

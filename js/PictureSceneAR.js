@@ -14,16 +14,19 @@ export default class PictureSceneAR extends Component {
   constructor() {
     super();
 
-    this.state = {
-      tiles: []
-    };
+    this.state = {};
   }
 
   componentDidMount() {
     const { imageId } = this.props;
     this.fetchImages(imageId);
+    this.fetchGame(imageId);
   }
-
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.images !== this.state.images) {
+      getTargets(this.state);
+    }
+  }
   render() {
     const { images } = this.state;
     if (images) {
@@ -96,47 +99,69 @@ export default class PictureSceneAR extends Component {
       this.setState({ images: imageArr });
     });
   };
+  fetchGame = id => {
+    api.postGame(id).then(game => {
+      console.log(game);
+      this.setState({ game });
+    });
+  };
 }
 
-ViroARTrackingTargets.createTargets({
-  targetOne: {
-    source: require('./res/chest.png'),
-    orientation: 'Up',
-    physicalWidth: 0.1 // real world width in meters
-  }
-});
+getTargets = state => {
+  const tiles = [
+    require(`./res/1.png`),
+    require(`./res/2.png`),
+    require(`./res/3.png`),
+    require(`./res/4.png`),
+    require(`./res/5.png`),
+    require(`./res/6.png`),
+    require(`./res/7.png`),
+    require(`./res/8.png`),
+    require(`./res/9.png`),
+    require(`./res/10.png`),
+    require(`./res/11.png`)
+  ];
 
-ViroARTrackingTargets.createTargets({
-  targetTwo: {
-    source: require('./res/money.png'),
-    orientation: 'Up',
-    physicalWidth: 0.1 // real world width in meters
-  }
-});
+  ViroARTrackingTargets.createTargets({
+    targetOne: {
+      source: tiles[0],
+      orientation: 'Up',
+      physicalWidth: 0.1 // real world width in meters
+    }
+  });
 
-ViroARTrackingTargets.createTargets({
-  targetThree: {
-    source: require('./res/skull.png'),
-    orientation: 'Up',
-    physicalWidth: 0.1 // real world width in meters
-  }
-});
+  ViroARTrackingTargets.createTargets({
+    targetTwo: {
+      source: tiles[1],
+      orientation: 'Up',
+      physicalWidth: 0.1 // real world width in meters
+    }
+  });
 
-ViroARTrackingTargets.createTargets({
-  targetFour: {
-    source: require('./res/g4.png'),
-    orientation: 'Up',
-    physicalWidth: 0.1 // real world width in meters
-  }
-});
+  ViroARTrackingTargets.createTargets({
+    targetThree: {
+      source: tiles[2],
+      orientation: 'Up',
+      physicalWidth: 0.1 // real world width in meters
+    }
+  });
 
-// ViroARTrackingTargets.createTargets({
-//   targetWhole: {
-//     source: require('./res/combined.png'),
-//     orientation: 'Up',
-//     physicalWidth: 0.2 // real world width in meters
-//   }
-// });
+  ViroARTrackingTargets.createTargets({
+    targetFour: {
+      source: tiles[3],
+      orientation: 'Up',
+      physicalWidth: 0.1 // real world width in meters
+    }
+  });
+
+  // ViroARTrackingTargets.createTargets({
+  //   targetWhole: {
+  //     source: require('./res/combined.png'),
+  //     orientation: 'Up',
+  //     physicalWidth: 0.2 // real world width in meters
+  //   }
+  // });
+};
 
 var styles = StyleSheet.create({
   textStyle: {
