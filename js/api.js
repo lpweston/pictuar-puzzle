@@ -1,7 +1,11 @@
 const Frisbee = require('frisbee');
 
 const api = new Frisbee({
-  baseURI: 'https://pictuar-puzzle.herokuapp.com'
+  baseURI: 'https://pictuar-puzzle.herokuapp.com',
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json'
+  }
 });
 
 export const getImages = id => {
@@ -14,22 +18,8 @@ export const getImages = id => {
 };
 
 export const postGame = id => {
-  // return fetch('https://pictuar-puzzle.herokuapp.com/games/', {
-  //   method: 'POST',
-  //   headers: {
-  //     Accept: 'application/json',
-  //     'Content-Type': 'application/json'
-  //   },
-  //   body: JSON.stringify({
-  //     img_id: id
-  //   })
-  // }).then(res => {
-  //   console.log(res);
-  //   return res;
-  // });
-  console.log(id);
   return api
-    .post('/games/', { img_id: id })
+    .post('/games/', { body: { img_id: id } })
     .then(res => {
       console.log(res);
       return res.body;
