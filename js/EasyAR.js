@@ -41,7 +41,7 @@ export default class EasyAR extends Component {
               height={0.07}
               width={0.07}
               source={{ uri: images[0].url }}
-              position={[0, 0.5, 0]}
+              position={[0, 0.05, 0]}
               rotation={[-90, 0, 0]}
             />
           </ViroARImageMarker>
@@ -72,16 +72,15 @@ export default class EasyAR extends Component {
               rotation={[-90, 0, 0]}
             />
           </ViroARImageMarker>
-          {/* <ViroARImageMarker target={'targetWhole'}>
+          <ViroARImageMarker target={'targetWhole'}>
             <ViroText
               style={styles.loadingTextStyle}
-              width={1}
-              height={1}
-              text="You win!"
-              position={[0, 0.05, 0]}
+              scale={[0.3, 0.3, 0.3]}
+              text="Hello world!"
+              position={[0, 0.06, 0]}
               rotation={[-90, 0, 0]}
             />
-          </ViroARImageMarker> */}
+          </ViroARImageMarker>
         </ViroARScene>
       );
     }
@@ -112,10 +111,7 @@ export default class EasyAR extends Component {
 getEasyTargets = state => {
   const { relation, win_img } = state.game;
 
-  console.log(state.game);
-
   const tiles = [
-    'not used',
     require(`./res/1.png`),
     require(`./res/2.png`),
     require(`./res/3.png`),
@@ -134,10 +130,10 @@ getEasyTargets = state => {
     require(`./res/16.png`)
   ];
 
-  const firstTile = tiles[relation['1']];
-  const secondTile = tiles[relation['2']];
-  const thirdTile = tiles[relation['3']];
-  const fourthTile = tiles[relation['4']];
+  const firstTile = tiles[relation['1'] - 1];
+  const secondTile = tiles[relation['2'] - 1];
+  const thirdTile = tiles[relation['3'] - 1];
+  const fourthTile = tiles[relation['4'] - 1];
 
   ViroARTrackingTargets.createTargets({
     targetOne: {
@@ -171,19 +167,19 @@ getEasyTargets = state => {
     }
   });
 
-  // ViroARTrackingTargets.createTargets({
-  //   targetWhole: {
-  //     source: { uri: win_img },
-  //     orientation: 'Up',
-  //     physicalWidth: 0.14 // real world width in meters
-  //   }
-  // });
+  ViroARTrackingTargets.createTargets({
+    targetWhole: {
+      source: { uri: win_img },
+      orientation: 'Up',
+      physicalWidth: 0.14 // real world width in meters
+    }
+  });
 };
 
 var styles = StyleSheet.create({
   loadingTextStyle: {
     fontFamily: 'Arial',
-    fontSize: 30,
+    fontSize: 20,
     color: '#ffffff',
     textAlignVertical: 'center',
     textAlign: 'center'

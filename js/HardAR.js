@@ -41,7 +41,7 @@ export default class HardAR extends Component {
               height={0.07}
               width={0.07}
               source={{ uri: images[0].url }}
-              position={[0, 0.5, 0]}
+              position={[0, 0.05, 0]}
               rotation={[-90, 0, 0]}
             />
           </ViroARImageMarker>
@@ -117,16 +117,16 @@ export default class HardAR extends Component {
               rotation={[-90, 0, 0]}
             />
           </ViroARImageMarker>
-          {/* <ViroARImageMarker target={'targetWhole'}>
+          <ViroARImageMarker target={'targetWhole'}>
             <ViroText
               style={styles.loadingTextStyle}
               width={1}
               height={1}
-              text="You win!"
+              text="Hello world!"
               position={[0, 0.1, 0]}
               rotation={[-90, 0, 0]}
             />
-          </ViroARImageMarker> */}
+          </ViroARImageMarker>
         </ViroARScene>
       );
     }
@@ -158,7 +158,6 @@ getHardTargets = state => {
   const { relation, win_img } = state.game;
 
   const tiles = [
-    'not used',
     require(`./res/1.png`),
     require(`./res/2.png`),
     require(`./res/3.png`),
@@ -177,15 +176,15 @@ getHardTargets = state => {
     require(`./res/16.png`)
   ];
 
-  const firstTile = tiles[relation['1']];
-  const secondTile = tiles[relation['2']];
-  const thirdTile = tiles[relation['3']];
-  const fourthTile = tiles[relation['4']];
-  const fithTile = tiles[relation['5']];
-  const sixthTile = tiles[relation['6']];
-  const seventhTile = tiles[relation['7']];
-  const eighthTile = tiles[relation['8']];
-  const ninthTile = tiles[relation['9']];
+  const firstTile = tiles[relation['1'] - 1];
+  const secondTile = tiles[relation['2'] - 1];
+  const thirdTile = tiles[relation['3'] - 1];
+  const fourthTile = tiles[relation['4'] - 1];
+  const fithTile = tiles[relation['5'] - 1];
+  const sixthTile = tiles[relation['6'] - 1];
+  const seventhTile = tiles[relation['7'] - 1];
+  const eighthTile = tiles[relation['8'] - 1];
+  const ninthTile = tiles[relation['9'] - 1];
 
   ViroARTrackingTargets.createTargets({
     targetOne: {
@@ -259,13 +258,13 @@ getHardTargets = state => {
     }
   });
 
-  // ViroARTrackingTargets.createTargets({
-  //   targetWhole: {
-  //     source: { uri: win_img },
-  //     orientation: 'Up',
-  //     physicalWidth: 0.14 // real world width in meters
-  //   }
-  // });
+  ViroARTrackingTargets.createTargets({
+    targetWhole: {
+      source: { uri: win_img },
+      orientation: 'Up',
+      physicalWidth: 0.14 // real world width in meters
+    }
+  });
 };
 
 var styles = StyleSheet.create({
