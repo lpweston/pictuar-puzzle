@@ -19,9 +19,8 @@ export const getImages = id => {
 
 export const postGame = id => {
   return api
-    .post('/games/', { body: { img_id: id } })
+    .post('/games/', { body: { img_id: id, diff: '4' } })
     .then(res => {
-      console.log(res);
       return res.body;
     })
     .catch(err => console.log(err));
