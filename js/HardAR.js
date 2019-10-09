@@ -158,6 +158,7 @@ getTargets = state => {
   const { relation, win_img } = state.game;
 
   const tiles = [
+    'not used',
     require(`./res/1.png`),
     require(`./res/2.png`),
     require(`./res/3.png`),
@@ -176,15 +177,15 @@ getTargets = state => {
     require(`./res/16.png`)
   ];
 
-  const firstTile = tiles[relation['1'] - 1];
-  const secondTile = tiles[relation['2'] - 1];
-  const thirdTile = tiles[relation['3'] - 1];
-  const fourthTile = tiles[relation['4'] - 1];
-  const fithTile = tiles[relation['5'] - 1];
-  const sixthTile = tiles[relation['6'] - 1];
-  const seventhTile = tiles[relation['7'] - 1];
-  const eighthTile = tiles[relation['8'] - 1];
-  const ninthTile = tiles[relation['9'] - 1];
+  const firstTile = tiles[relation['1']];
+  const secondTile = tiles[relation['2']];
+  const thirdTile = tiles[relation['3']];
+  const fourthTile = tiles[relation['4']];
+  const fithTile = tiles[relation['5']];
+  const sixthTile = tiles[relation['6']];
+  const seventhTile = tiles[relation['7']];
+  const eighthTile = tiles[relation['8']];
+  const ninthTile = tiles[relation['9']];
 
   ViroARTrackingTargets.createTargets({
     targetOne: {
