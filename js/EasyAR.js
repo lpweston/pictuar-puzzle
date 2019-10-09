@@ -27,7 +27,7 @@ export default class EasyAR extends Component {
     if (prevState.images !== this.state.images) {
       this.fetchGame(imageId);
     } else if (prevState.game !== this.state.game) {
-      getTargets(this.state);
+      getEasyTargets(this.state);
     }
   }
 
@@ -109,8 +109,10 @@ export default class EasyAR extends Component {
   };
 }
 
-getTargets = state => {
+getEasyTargets = state => {
   const { relation, win_img } = state.game;
+
+  console.log(state.game);
 
   const tiles = [
     'not used',

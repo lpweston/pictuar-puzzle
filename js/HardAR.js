@@ -27,7 +27,7 @@ export default class HardAR extends Component {
     if (prevState.images !== this.state.images) {
       this.fetchGame(imageId);
     } else if (prevState.game !== this.state.game) {
-      getTargets(this.state);
+      getHardTargets(this.state);
     }
   }
 
@@ -154,7 +154,7 @@ export default class HardAR extends Component {
   };
 }
 
-getTargets = state => {
+getHardTargets = state => {
   const { relation, win_img } = state.game;
 
   const tiles = [
@@ -226,6 +226,7 @@ getTargets = state => {
       physicalWidth: 0.07 // real world width in meters
     }
   });
+
   ViroARTrackingTargets.createTargets({
     targetSix: {
       source: sixthTile,
@@ -233,6 +234,7 @@ getTargets = state => {
       physicalWidth: 0.07 // real world width in meters
     }
   });
+
   ViroARTrackingTargets.createTargets({
     targetSeven: {
       source: seventhTile,
@@ -240,6 +242,7 @@ getTargets = state => {
       physicalWidth: 0.07 // real world width in meters
     }
   });
+
   ViroARTrackingTargets.createTargets({
     targetEight: {
       source: eighthTile,
@@ -247,6 +250,7 @@ getTargets = state => {
       physicalWidth: 0.07 // real world width in meters
     }
   });
+
   ViroARTrackingTargets.createTargets({
     targetNine: {
       source: ninthTile,
@@ -254,6 +258,7 @@ getTargets = state => {
       physicalWidth: 0.07 // real world width in meters
     }
   });
+
   // ViroARTrackingTargets.createTargets({
   //   targetWhole: {
   //     source: { uri: win_img },
