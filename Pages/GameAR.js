@@ -8,10 +8,12 @@ var sharedProps = {
 };
 
 // Sets the default scene you want for AR and VR
-var InitialARScene = require("../js/PictureSceneAR");
+var EasyARScene = require("../js/EasyAR");
+var HardARScene = require("../js/HardAR");
 
 var UNSET = "UNSET";
-var AR_NAVIGATOR_TYPE = "AR";
+var EASY_AR_NAVIGATOR_TYPE = "easy";
+var HARD_AR_NAVIGATOR_TYPE = "hard";
 
 // This determines which type of experience to launch in, or UNSET, if the user should
 // be presented with a choice of AR or VR. By default, we offer the user a choice.
@@ -24,11 +26,10 @@ export default class ViroSample extends Component {
     this.state = {
       navigatorType: defaultNavigatorType,
       sharedProps: sharedProps,
-      // viroAppProps: { imageId: 1 },
-      imageId: "1"
     };
-    this._getExperienceSelector = this._getExperienceSelector.bind(this);
-    this._getARNavigator = this._getARNavigator.bind(this);
+    this._getDifficultySelector = this._getDifficultySelector.bind(this);
+    this._getEasyARNavigator = this._getEasyARNavigator.bind(this);
+    this._getHardARNavigator = this._getHardARNavigator.bind(this);
     this._getExperienceButtonOnPress = this._getExperienceButtonOnPress.bind(
       this
     );
@@ -38,23 +39,36 @@ export default class ViroSample extends Component {
   // Replace this function with the contents of _getVRNavigator() or _getARNavigator()
   // if you are building a specific type of experience.
   render() {
+    console.log(sharedProps);
+    console.log(this.props.navigation.state.params.imageId);
     if (this.state.navigatorType == UNSET) {
-      return this._getExperienceSelector();
-    } else if (this.state.navigatorType == AR_NAVIGATOR_TYPE) {
-      return this._getARNavigator();
+      return this._getDifficultySelector();
+    } else if (this.state.navigatorType == EASY_AR_NAVIGATOR_TYPE) {
+      return this._getEasyARNavigator();
+    } else if (this.state.navigatorType == HARD_AR_NAVIGATOR_TYPE) {
+      return this._getHardARNavigator();
     }
   }
 
-  // Presents the user with a choice of an AR or VR experience
-  _getExperienceSelector() {
+  // Presents the user with a choice of an AR Difficulty
+  _getDifficultySelector() {
     return (
       <View style={localStyles.outer}>
         <View style={localStyles.inner}>
-          <Text style={localStyles.titleText}>ARRRRR You ready?</Text>
+          <Text style={localStyles.titleText}>Easy (4x4)</Text>
 
           <TouchableHighlight
             style={localStyles.buttons}
-            onPress={this._getExperienceButtonOnPress(AR_NAVIGATOR_TYPE)}
+            onPress={this._getExperienceButtonOnPress(EASY_AR_NAVIGATOR_TYPE)}
+            underlayColor={"#68a0ff"}
+          >
+            <Text style={localStyles.buttonText}>Start</Text>
+          </TouchableHighlight>
+          <Text style={localStyles.titleText}>Hard (9x9)</Text>
+
+          <TouchableHighlight
+            style={localStyles.buttons}
+            onPress={this._getExperienceButtonOnPress(HARD_AR_NAVIGATOR_TYPE)}
             underlayColor={"#68a0ff"}
           >
             <Text style={localStyles.buttonText}>Start</Text>
@@ -65,13 +79,26 @@ export default class ViroSample extends Component {
   }
 
   // Returns the ViroARSceneNavigator which will start the AR experience
-  _getARNavigator() {
+  _getEasyARNavigator() {
     return (
       <ViroARSceneNavigator
         {...this.state.sharedProps}
         initialScene={{
-          scene: InitialARScene,
-          passProps: { imageId: this.state.imageId }
+          scene: EasyARScene,
+          passProps: { imageId: this.props.navigation.state.params.imageId }
+        }}
+        // viroAppProps={this.state.viroAppProps}
+      />
+    );
+  }
+
+  _getHardARNavigator() {
+    return (
+      <ViroARSceneNavigator
+        {...this.state.sharedProps}
+        initialScene={{
+          scene: HardARScene,
+          passProps: { imageId: this.props.navigation.state.params.imageId }
         }}
         // viroAppProps={this.state.viroAppProps}
       />

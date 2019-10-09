@@ -1,10 +1,14 @@
 const Frisbee = require("frisbee");
 
 const api = new Frisbee({
-  baseURI: "https://pictuar-puzzle.herokuapp.com"
+  baseURI: "https://pictuar-puzzle.herokuapp.com",
+  headers: {
+    Accept: "application/json",
+    "Content-Type": "application/json"
+  }
 });
 
-export const getImages = id => {
+export const getEasyImages = id => {
   return api
     .get(`/images/${id}`)
     .then(res => {
@@ -13,25 +17,28 @@ export const getImages = id => {
     .catch(err => console.log(err));
 };
 
-export const postGame = id => {
-  // return fetch('https://pictuar-puzzle.herokuapp.com/games/', {
-  //   method: 'POST',
-  //   headers: {
-  //     Accept: 'application/json',
-  //     'Content-Type': 'application/json'
-  //   },
-  //   body: JSON.stringify({
-  //     img_id: id
-  //   })
-  // }).then(res => {
-  //   console.log(res);
-  //   return res;
-  // });
-  console.log(id);
+export const getHardImages = id => {
   return api
-    .post("/games/", { img_id: id })
+    .get(`/images/${id}`)
     .then(res => {
-      console.log(res);
+      return res.body.intermediate_pieces;
+    })
+    .catch(err => console.log(err));
+};
+
+export const postEasyGame = id => {
+  return api
+    .post("/games/", { body: { img_id: id, diff: "4", user_id: "1" } })
+    .then(res => {
+      return res.body;
+    })
+    .catch(err => console.log(err));
+};
+
+export const postHardGame = id => {
+  return api
+    .post("/games/", { body: { img_id: id, diff: "9", user_id: "1" } })
+    .then(res => {
       return res.body;
     })
     .catch(err => console.log(err));

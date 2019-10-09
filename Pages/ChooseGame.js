@@ -10,7 +10,9 @@ import {
   TextInput,
   Button,
   TouchableOpacity,
-  ActivityIndicator
+  ActivityIndicator,
+  TouchableHighlight,
+  Switch
 } from "react-native";
 
 const api = new Frisbee({ baseURI: "https://pictuar-puzzle.herokuapp.com/" });
@@ -20,7 +22,8 @@ export default class ChooseGame extends Component {
     super(props);
     this.state = {
       isLoading: true,
-      dataSource: null
+      dataSource: null,
+      photo: null
     };
   }
 
@@ -65,6 +68,7 @@ export default class ChooseGame extends Component {
       />
     )
   };
+
   render() {
     if (this.state.isLoading) {
       return (
@@ -81,6 +85,7 @@ export default class ChooseGame extends Component {
         );
       });
 
+      const { photo } = this.state;
       return (
         <>
           <View style={styles.container}>
@@ -88,81 +93,58 @@ export default class ChooseGame extends Component {
             <View style={styles.imageBox}>
               <View style={{ padding: 10, paddingTop: 30 }}>
                 <TouchableOpacity
-                  onPress={() => this.props.navigation.navigate("GameAR")}
+                  onPress={() =>
+                    this.props.navigation.navigate("GameAR", {
+                      imageId: this.state.dataSource.body[0].id
+                    })
+                  }
                 >
                   {images[0]}
                 </TouchableOpacity>
               </View>
               <View style={{ padding: 10, paddingTop: 30 }}>
                 <TouchableOpacity
-                  onPress={() => this.props.navigation.navigate("GameAR")}
+                  onPress={() =>
+                    this.props.navigation.navigate("GameAR", {
+                      imageId: this.state.dataSource.body[1].id
+                    })
+                  }
                 >
                   {images[1]}
                 </TouchableOpacity>
               </View>
               <View style={{ padding: 10, paddingTop: 30 }}>
                 <TouchableOpacity
-                  onPress={() => this.props.navigation.navigate("GameAR")}
+                  onPress={() =>
+                    this.props.navigation.navigate("GameAR", {
+                      imageId: this.state.dataSource.body[2].id
+                    })
+                  }
                 >
                   {images[2]}
                 </TouchableOpacity>
               </View>
             </View>
           </View>
+
           <View style={styles.colourContainer}>
-            <View style={styles.btnContainer}>
+            <View style={styles.btnContainerBottom}>
               <TouchableOpacity
                 style={styles.userBtn}
-                onPress={() => this.props.navigation.navigate("Create")}
+                onPress={() => this.props.navigation.navigate("test")}
               >
                 <Text style={styles.textBtn}>Upload Image!</Text>
               </TouchableOpacity>
             </View>
           </View>
           <View style={styles.colourContainer}>
-            <View style={styles.btnContainer}>
+            <View style={styles.btnContainerBottom}>
               <TouchableOpacity
                 style={styles.userBtn}
                 onPress={() => this.props.navigation.navigate("Leaderboard")}
               >
                 <Text style={styles.textBtn}>Leaderboard</Text>
               </TouchableOpacity>
-            </View>
-          </View>
-
-          <View style={styles.difficultyContainer}>
-            <Text style={styles.title}>Choose your difficulty:</Text>
-            <View style={styles.imageBox}>
-              <View style={{ padding: 10, paddingTop: 40 }}>
-                <TouchableOpacity
-                  onPress={() => this.props.navigation.navigate("GameAR")}
-                >
-                  <Image
-                    style={styles.imageThumb}
-                    source={require("../assets/grid2x2.png")}
-                  ></Image>
-                </TouchableOpacity>
-              </View>
-              <View style={{ padding: 10, paddingTop: 40 }}>
-                <TouchableOpacity
-                  onPress={() => this.props.navigation.navigate("GameAR")}
-                >
-                  <Image
-                    style={styles.imageThumb}
-                    source={require("../assets/grid3x3.png")}
-                  ></Image>
-                </TouchableOpacity>
-              </View>
-              <View style={{ padding: 10, paddingTop: 40 }}>
-                <TouchableOpacity
-                  onPress={() => this.props.navigation.navigate("GameAR")}
-                >
-                  <Image
-                    style={styles.imageThumb}
-                    source={require("../assets/grid4x4.png")}
-                  ></Image>
-                </TouchableOpacity>
-              </View>
             </View>
           </View>
         </>
@@ -177,6 +159,12 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     backgroundColor: "#75A0B9"
+  },
+  diffBtn: {
+    backgroundColor: "#92BFD7",
+    padding: 25,
+    width: "100%",
+    borderRadius: 10
   },
   colourContainer: {
     alignItems: "center",
@@ -195,7 +183,14 @@ const styles = StyleSheet.create({
     backgroundColor: "#75A0B9"
   },
   title: {
-    paddingTop: 10,
+    paddingTop: 20,
+    fontSize: 20,
+    textAlign: "center",
+    fontWeight: "bold",
+    color: "white"
+  },
+  subTitle: {
+    paddingTop: 0,
     fontSize: 20,
     textAlign: "center",
     fontWeight: "bold",
@@ -214,7 +209,11 @@ const styles = StyleSheet.create({
     borderRadius: 8
   },
   btnContainer: {
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    padding: 20
+  },
+  btnContainerBottom: {
+    width: "90%"
   },
   textBtn: {
     fontSize: 15,

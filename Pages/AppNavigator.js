@@ -17,9 +17,9 @@ const RootStack = createStackNavigator(
     ChooseGame: ChooseGame,
     GameAR: GameAR,
     Profile: Profile,
-    Leaderboard: Leaderboard
+    Leaderboard: Leaderboard,
     // Login: Login,
-    // test: test
+    test: test
   },
   {
     initalRouteName: "Home",
