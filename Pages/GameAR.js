@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { Text, View, StyleSheet, TouchableHighlight } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  TouchableHighlight,
+  TouchableOpacity,
+  Image
+} from "react-native";
 
 import { ViroARSceneNavigator } from "react-viro";
 
@@ -20,12 +27,37 @@ var HARD_AR_NAVIGATOR_TYPE = "hard";
 var defaultNavigatorType = UNSET;
 
 export default class ViroSample extends Component {
+  static navigationOptions = ({ navigation }) => ({
+    headerRight: (
+      <TouchableOpacity
+        style={{
+          marginRight: 10,
+          borderRadius: 5,
+          borderWidth: 2,
+          borderColor: "#92BFD7",
+          backgroundColor: "#92BFD7"
+        }}
+        onPress={() => navigation.navigate("Profile")}
+      >
+        <Text style={{ fontSize: 16, padding: 5, color: "white" }}>
+          Profile
+        </Text>
+      </TouchableOpacity>
+    ),
+    headerTitle: (
+      <Image
+        style={{ width: 100, height: "100%", padding: 15 }}
+        source={require("../assets/pictuar-puzzle_logo.png")}
+      />
+    )
+  });
+
   constructor() {
     super();
 
     this.state = {
       navigatorType: defaultNavigatorType,
-      sharedProps: sharedProps,
+      sharedProps: sharedProps
     };
     this._getDifficultySelector = this._getDifficultySelector.bind(this);
     this._getEasyARNavigator = this._getEasyARNavigator.bind(this);
@@ -55,23 +87,23 @@ export default class ViroSample extends Component {
     return (
       <View style={localStyles.outer}>
         <View style={localStyles.inner}>
-          <Text style={localStyles.titleText}>Easy (4x4)</Text>
+          <Text style={localStyles.title}>Easy (4x4)</Text>
 
           <TouchableHighlight
-            style={localStyles.buttons}
+            style={localStyles.userBtn}
             onPress={this._getExperienceButtonOnPress(EASY_AR_NAVIGATOR_TYPE)}
-            underlayColor={"#68a0ff"}
+            underlayColor={"#91B3C7"}
           >
-            <Text style={localStyles.buttonText}>Start</Text>
+            <Text style={localStyles.textBtn}>Start!</Text>
           </TouchableHighlight>
-          <Text style={localStyles.titleText}>Hard (9x9)</Text>
+          <Text style={localStyles.title}>Hard (9x9)</Text>
 
           <TouchableHighlight
-            style={localStyles.buttons}
+            style={localStyles.userBtn}
             onPress={this._getExperienceButtonOnPress(HARD_AR_NAVIGATOR_TYPE)}
-            underlayColor={"#68a0ff"}
+            underlayColor={"#91B3C7"}
           >
-            <Text style={localStyles.buttonText}>Start</Text>
+            <Text style={localStyles.textBtn}>Start!</Text>
           </TouchableHighlight>
         </View>
       </View>
@@ -126,19 +158,19 @@ export default class ViroSample extends Component {
 var localStyles = StyleSheet.create({
   viroContainer: {
     flex: 1,
-    backgroundColor: "black"
+    backgroundColor: "#75A0B9"
   },
   outer: {
     flex: 1,
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "black"
+    backgroundColor: "#75A0B9"
   },
   inner: {
     flex: 1,
     flexDirection: "column",
     alignItems: "center",
-    backgroundColor: "black"
+    backgroundColor: "#75A0B9"
   },
   titleText: {
     paddingTop: 30,
@@ -175,6 +207,100 @@ var localStyles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     borderColor: "#fff"
+  },
+  container: {
+    paddingTop: 15,
+    flex: 1,
+    alignItems: "center",
+    backgroundColor: "#75A0B9"
+  },
+  diffBtn: {
+    backgroundColor: "#92BFD7",
+    padding: 25,
+    width: "100%",
+    borderRadius: 10
+  },
+  colourContainer: {
+    alignItems: "center",
+    backgroundColor: "#75A0B9",
+    paddingBottom: 10
+  },
+  difficultyContainer: {
+    flex: 1,
+    alignItems: "center",
+    backgroundColor: "#75A0B9"
+  },
+  buttonContainer: {
+    paddingTop: 10,
+    flex: 1,
+    alignItems: "center",
+    backgroundColor: "#75A0B9"
+  },
+  title: {
+    paddingBottom: 30,
+    fontSize: 25,
+    textAlign: "center",
+    fontWeight: "bold",
+    color: "white"
+  },
+  subTitle: {
+    paddingTop: 0,
+    fontSize: 20,
+    textAlign: "center",
+    fontWeight: "bold",
+    color: "white"
+  },
+  subHeading: {
+    textAlign: "center",
+    color: "#333333",
+    marginBottom: 5
+  },
+  input: {
+    width: "60%",
+    backgroundColor: "#F0F0F0",
+    padding: 10,
+    margin: 4,
+    borderRadius: 8
+  },
+  btnContainer: {
+    justifyContent: "space-between",
+    padding: 20
+  },
+  btnContainerBottom: {
+    width: "90%"
+  },
+  imageThumb: {
+    width: 100,
+    height: 100,
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: "white"
+  },
+  images: {
+    flexDirection: "row"
+  },
+  logo: {
+    width: "95%",
+    height: "28%"
+  },
+  imageBox: {
+    flexDirection: "row"
+  },
+  rightHeader: {
+    color: "white"
+  },
+  userBtn: {
+    backgroundColor: "#92BFD7",
+    padding: 30,
+    width: "85%",
+    borderRadius: 10,
+    marginBottom: 50
+  },
+  textBtn: {
+    fontSize: 20,
+    textAlign: "center",
+    color: "white",
+    fontWeight: "bold"
   }
 });
 

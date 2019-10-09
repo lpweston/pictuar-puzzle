@@ -21,39 +21,52 @@ export default class Profile extends Component {
   };
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.title}>User Profile:</Text>
-        <Text style={styles.subHeading}></Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Forename"
-          placeholderTextColor="#BEBEBE"
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Surname"
-          placeholderTextColor="#BEBEBE"
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Username"
-          placeholderTextColor="#BEBEBE"
-        />
-        <TextInput
-          style={styles.input}
-          secureTextEntry
-          placeholder="Password"
-          placeholderTextColor="#BEBEBE"
-        />
-        <View style={styles.btnContainer}>
-          <TouchableOpacity
-            style={styles.userBtn}
-            onPress={() => this.props.navigation.navigate("Create")}
-          >
-            <Text style={styles.textBtn}>Create</Text>
-          </TouchableOpacity>
+      <>
+        <View style={styles.container}>
+          <View style={styles.container}>
+            <Text style={styles.leaderboardTitle}>User Profile</Text>
+          </View>
+
+          <View style={styles.leaderboardDiv}>
+            <Text style={styles.leaderboardComplete}>John Smith</Text>
+            <Text style={styles.leaderboardText}>johnsmith@email.com</Text>
+            <Image
+              source={require("../assets/man_photo.jpg")}
+              style={{
+                height: 100,
+                width: 100,
+                borderWidth: 3,
+                borderRadius: 5,
+                borderColor: "white",
+                marginTop: 15,
+                justifyContent: "center"
+              }}
+            />
+            <Text
+              style={{
+                position: "absolute",
+                top: 95,
+                right: 25,
+                color: "white",
+                fontWeight: "bold"
+              }}
+            >
+              Best score (easy): 00:42:31
+            </Text>
+            <Text
+              style={{
+                position: "absolute",
+                top: 130,
+                right: 25,
+                color: "white",
+                fontWeight: "bold"
+              }}
+            >
+              Best score (hard): 01:59:18
+            </Text>
+          </View>
         </View>
-      </View>
+      </>
     );
   }
 }
@@ -66,7 +79,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#75A0B9"
   },
   title: {
-    paddingTop: 30,
+    paddingTop: 20,
     fontSize: 20,
     textAlign: "center",
     margin: 10,
@@ -90,7 +103,7 @@ const styles = StyleSheet.create({
   btnContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingTop: 10
+    paddingTop: 0
   },
   userBtn: {
     backgroundColor: "#92BFD7",
@@ -103,5 +116,46 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "white",
     fontWeight: "bold"
+  },
+  leaderboard: {
+    backgroundColor: "#92BFD7",
+    margin: 10,
+    padding: 5,
+    width: "90%",
+    borderRadius: 20
+  },
+  leaderboardDiv: {
+    backgroundColor: "#92BFD7",
+    margin: 20,
+    padding: 10,
+    width: "90%",
+    borderRadius: 20,
+    position: "absolute",
+    top: 80
+  },
+  leaderboardTitle: {
+    textAlign: "center",
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 25
+  },
+  leaderboardText: {
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 14,
+    textAlign: "center"
+  },
+  textBox: {
+    marginRight: "auto",
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 12
+  },
+  leaderboardComplete: {
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 18,
+    textAlign: "center",
+    paddingBottom: 10
   }
 });

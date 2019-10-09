@@ -14,7 +14,7 @@ export default class test extends React.Component {
     photo: null
   };
 
-  static navigationOptions = {
+  static navigationOptions = ({ navigation }) => ({
     headerRight: (
       <TouchableOpacity
         style={{
@@ -24,11 +24,9 @@ export default class test extends React.Component {
           borderColor: "#92BFD7",
           backgroundColor: "#92BFD7"
         }}
+        onPress={() => navigation.navigate("Profile")}
       >
-        <Text
-          onPress={() => this.props.navigation.navigate("Profile")}
-          style={{ fontSize: 16, padding: 5, color: "white" }}
-        >
+        <Text style={{ fontSize: 16, padding: 5, color: "white" }}>
           Profile
         </Text>
       </TouchableOpacity>
@@ -39,7 +37,7 @@ export default class test extends React.Component {
         source={require("../assets/pictuar-puzzle_logo.png")}
       />
     )
-  };
+  });
 
   handleChoosePhoto = () => {
     const options = {

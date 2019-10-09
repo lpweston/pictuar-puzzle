@@ -42,7 +42,7 @@ export default class ChooseGame extends Component {
       });
   }
 
-  static navigationOptions = {
+  static navigationOptions = ({ navigation }) => ({
     headerRight: (
       <TouchableOpacity
         style={{
@@ -52,11 +52,9 @@ export default class ChooseGame extends Component {
           borderColor: "#92BFD7",
           backgroundColor: "#92BFD7"
         }}
+        onPress={() => navigation.navigate("Profile")}
       >
-        <Text
-          onPress={() => this.props.navigation.navigate("Profile")}
-          style={{ fontSize: 16, padding: 5, color: "white" }}
-        >
+        <Text style={{ fontSize: 16, padding: 5, color: "white" }}>
           Profile
         </Text>
       </TouchableOpacity>
@@ -67,7 +65,7 @@ export default class ChooseGame extends Component {
         source={require("../assets/pictuar-puzzle_logo.png")}
       />
     )
-  };
+  });
 
   render() {
     if (this.state.isLoading) {
@@ -128,24 +126,18 @@ export default class ChooseGame extends Component {
           </View>
 
           <View style={styles.colourContainer}>
-            <View style={styles.btnContainerBottom}>
-              <TouchableOpacity
-                style={styles.userBtn}
-                onPress={() => this.props.navigation.navigate("test")}
-              >
-                <Text style={styles.textBtn}>Upload Image!</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View style={styles.colourContainer}>
-            <View style={styles.btnContainerBottom}>
-              <TouchableOpacity
-                style={styles.userBtn}
-                onPress={() => this.props.navigation.navigate("Leaderboard")}
-              >
-                <Text style={styles.textBtn}>Leaderboard</Text>
-              </TouchableOpacity>
-            </View>
+            <TouchableOpacity
+              style={styles.userBtn}
+              onPress={() => this.props.navigation.navigate("UploadImage")}
+            >
+              <Text style={styles.textBtn}>Upload Image!</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.userBtn}
+              onPress={() => this.props.navigation.navigate("Leaderboard")}
+            >
+              <Text style={styles.textBtn}>Leaderboard</Text>
+            </TouchableOpacity>
           </View>
         </>
       );
@@ -215,12 +207,6 @@ const styles = StyleSheet.create({
   btnContainerBottom: {
     width: "90%"
   },
-  textBtn: {
-    fontSize: 15,
-    textAlign: "center",
-    fontWeight: "bold",
-    color: "white"
-  },
   imageThumb: {
     width: 100,
     height: 100,
@@ -243,12 +229,13 @@ const styles = StyleSheet.create({
   },
   userBtn: {
     backgroundColor: "#92BFD7",
-    padding: 15,
-    width: "55%",
-    borderRadius: 10
+    padding: 30,
+    width: "85%",
+    borderRadius: 10,
+    marginBottom: 50
   },
   textBtn: {
-    fontSize: 15,
+    fontSize: 20,
     textAlign: "center",
     color: "white",
     fontWeight: "bold"

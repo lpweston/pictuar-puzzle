@@ -12,17 +12,17 @@ import {
 } from "react-native";
 
 export default class Leaderboard extends Component {
-  static navigationOptions = {
+  static navigationOptions = ({ navigation }) => ({
     headerRight: (
       <TouchableOpacity
         style={{
-          color: "white",
           marginRight: 10,
           borderRadius: 5,
           borderWidth: 2,
           borderColor: "#92BFD7",
           backgroundColor: "#92BFD7"
         }}
+        onPress={() => navigation.navigate("Profile")}
       >
         <Text style={{ fontSize: 16, padding: 5, color: "white" }}>
           Profile
@@ -31,11 +31,11 @@ export default class Leaderboard extends Component {
     ),
     headerTitle: (
       <Image
-        style={{ width: 100, height: "100%", padding: 20 }}
+        style={{ width: 100, height: "100%", padding: 15 }}
         source={require("../assets/pictuar-puzzle_logo.png")}
       />
     )
-  };
+  });
 
   render() {
     const hours = new Date().getHours();
