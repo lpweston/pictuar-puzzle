@@ -8,7 +8,7 @@ const api = new Frisbee({
   }
 });
 
-export const getImages = id => {
+export const getEasyImages = id => {
   return api
     .get(`/images/${id}`)
     .then(res => {
@@ -17,9 +17,27 @@ export const getImages = id => {
     .catch(err => console.log(err));
 };
 
-export const postGame = id => {
+export const getHardImages = id => {
+  return api
+    .get(`/images/${id}`)
+    .then(res => {
+      return res.body.intermediate_pieces;
+    })
+    .catch(err => console.log(err));
+};
+
+export const postEasyGame = id => {
   return api
     .post('/games/', { body: { img_id: id, diff: '4' } })
+    .then(res => {
+      return res.body;
+    })
+    .catch(err => console.log(err));
+};
+
+export const postHardGame = id => {
+  return api
+    .post('/games/', { body: { img_id: id, diff: '9' } })
     .then(res => {
       return res.body;
     })

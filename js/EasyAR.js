@@ -10,7 +10,7 @@ import {
   ViroText
 } from 'react-viro';
 
-export default class PictureSceneAR extends Component {
+export default class EasyAR extends Component {
   constructor() {
     super();
 
@@ -72,16 +72,16 @@ export default class PictureSceneAR extends Component {
               rotation={[-90, 0, 0]}
             />
           </ViroARImageMarker>
-          <ViroARImageMarker target={'targetWhole'}>
+          {/* <ViroARImageMarker target={'targetWhole'}>
             <ViroText
               style={styles.loadingTextStyle}
               width={1}
               height={1}
               text="You win!"
-              position={[0, 0.1, 0]}
+              position={[0, 0.05, 0]}
               rotation={[-90, 0, 0]}
             />
-          </ViroARImageMarker>
+          </ViroARImageMarker> */}
         </ViroARScene>
       );
     }
@@ -98,12 +98,12 @@ export default class PictureSceneAR extends Component {
     );
   }
   fetchImages = id => {
-    api.getImages(id).then(imageArr => {
+    api.getEasyImages(id).then(imageArr => {
       this.setState({ images: imageArr });
     });
   };
   fetchGame = id => {
-    api.postGame(id).then(gameArr => {
+    api.postEasyGame(id).then(gameArr => {
       this.setState({ game: gameArr, loaded: true });
     });
   };
@@ -111,8 +111,6 @@ export default class PictureSceneAR extends Component {
 
 getTargets = state => {
   const { relation, win_img } = state.game;
-
-  console.log(win_img);
 
   const tiles = [
     require(`./res/1.png`),
@@ -170,13 +168,13 @@ getTargets = state => {
     }
   });
 
-  ViroARTrackingTargets.createTargets({
-    targetWhole: {
-      source: { uri: win_img },
-      orientation: 'Up',
-      physicalWidth: 0.14 // real world width in meters
-    }
-  });
+  // ViroARTrackingTargets.createTargets({
+  //   targetWhole: {
+  //     source: { uri: win_img },
+  //     orientation: 'Up',
+  //     physicalWidth: 0.14 // real world width in meters
+  //   }
+  // });
 };
 
 var styles = StyleSheet.create({
@@ -189,4 +187,4 @@ var styles = StyleSheet.create({
   }
 });
 
-module.exports = PictureSceneAR;
+module.exports = EasyAR;
