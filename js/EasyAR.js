@@ -19,7 +19,7 @@ export default class EasyAR extends Component {
 
   componentDidMount() {
     const { imageId } = this.props;
-    console.log(imageId)
+    console.log(imageId);
     this.fetchImages(imageId);
   }
 
@@ -34,6 +34,7 @@ export default class EasyAR extends Component {
 
   render() {
     const { images, game, loaded } = this.state;
+    console.log(this.state);
     if (loaded) {
       return (
         <ViroARScene>
@@ -73,7 +74,7 @@ export default class EasyAR extends Component {
               rotation={[-90, 0, 0]}
             />
           </ViroARImageMarker>
-          <ViroARImageMarker target={"targetWhole"}>
+          {/* <ViroARImageMarker target={"targetWhole"}>
             <ViroText
               style={styles.loadingTextStyle}
               scale={[0.3, 0.3, 0.3]}
@@ -81,14 +82,14 @@ export default class EasyAR extends Component {
               position={[0, 0.06, 0]}
               rotation={[-90, 0, 0]}
             />
-          </ViroARImageMarker>
+          </ViroARImageMarker> */}
         </ViroARScene>
       );
     }
     return (
       <ViroARScene>
         <ViroText
-          text={"loading..."}
+          text={"Loading..."}
           scale={[0.3, 0.3, 0.3]}
           position={[0, -0.5, -0.25]}
           rotation={[-90, 0, 0]}
@@ -168,13 +169,13 @@ getEasyTargets = state => {
     }
   });
 
-  ViroARTrackingTargets.createTargets({
-    targetWhole: {
-      source: { uri: win_img },
-      orientation: "Up",
-      physicalWidth: 0.14 // real world width in meters
-    }
-  });
+  // ViroARTrackingTargets.createTargets({
+  //   targetWhole: {
+  //     source: { uri: win_img },
+  //     orientation: "Up",
+  //     physicalWidth: 0.14 // real world width in meters
+  //   }
+  // });
 };
 
 var styles = StyleSheet.create({

@@ -117,7 +117,7 @@ export default class HardAR extends Component {
               rotation={[-90, 0, 0]}
             />
           </ViroARImageMarker>
-          <ViroARImageMarker target={"targetWhole"}>
+          {/* <ViroARImageMarker target={"targetWhole"}>
             <ViroText
               style={styles.loadingTextStyle}
               width={1}
@@ -126,7 +126,7 @@ export default class HardAR extends Component {
               position={[0, 0.1, 0]}
               rotation={[-90, 0, 0]}
             />
-          </ViroARImageMarker>
+          </ViroARImageMarker> */}
         </ViroARScene>
       );
     }
@@ -258,13 +258,13 @@ getHardTargets = state => {
     }
   });
 
-  ViroARTrackingTargets.createTargets({
-    targetWhole: {
-      source: { uri: win_img },
-      orientation: "Up",
-      physicalWidth: 0.14 // real world width in meters
-    }
-  });
+  // ViroARTrackingTargets.createTargets({
+  //   targetWhole: {
+  //     source: { uri: win_img },
+  //     orientation: "Up",
+  //     physicalWidth: 0.14 // real world width in meters
+  //   }
+  // });
 };
 
 var styles = StyleSheet.create({

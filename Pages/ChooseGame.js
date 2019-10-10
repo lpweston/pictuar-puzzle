@@ -27,6 +27,10 @@ export default class ChooseGame extends Component {
     };
   }
 
+  // componentDidUpdate() {
+  //   console.log("picture selected");
+  // }
+
   componentDidMount() {
     return api
       .get("images/")
@@ -120,6 +124,17 @@ export default class ChooseGame extends Component {
                   }
                 >
                   {images[2]}
+                </TouchableOpacity>
+              </View>
+              <View style={{ position: "absolute", top: 145, right: 130 }}>
+                <TouchableOpacity
+                  onPress={() =>
+                    this.props.navigation.navigate("GameAR", {
+                      imageId: this.state.dataSource.body[10].id
+                    })
+                  }
+                >
+                  {images[10]}
                 </TouchableOpacity>
               </View>
             </View>

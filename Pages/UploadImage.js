@@ -8,10 +8,15 @@ import {
   TouchableOpacity
 } from "react-native";
 import ImagePicker from "react-native-image-picker";
+import Frisbee from "frisbee";
 
+// const getStuff = new Frisbee({
+//   headers: { Accept: "application/json", "Content-Type": "application/json" }
+// });
 export default class test extends React.Component {
   state = {
-    photo: null
+    photo: null,
+    response: null
   };
 
   static navigationOptions = ({ navigation }) => ({
@@ -43,32 +48,63 @@ export default class test extends React.Component {
     const options = {
       noData: true
     };
-    ImagePicker.launchImageLibrary(options, response => {
-      if (response.uri) {
-        this.setState({ photo: response });
+    ImagePicker.launchImageLibrary(
+      { options, mediaType: "photo" },
+      response => {
+        if (response.uri) {
+          this.setState({ photo: response });
+        }
       }
+    );
+  };
+
+  uploadPhoto = () => {
+    const { data } = this.state.photo;
+    return fetch("https://api.imgur.com/3/image", {
+      method: "POST",
+      body: data,
+      headers: {
+        Authorization: "Bearer fc0a9f7020eae6353ae08011ef2852caff0e0922",
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      }
+    }).then(res => {
+      res
+        .json()
+        .then(link => {
+          this.setState({ response: link.data.link });
+          const { response } = this.state;
+          return fetch("https://pictuar-puzzle.herokuapp.com/images/", {
+            method: "POST",
+            body: JSON.stringify({ url: response, diff: "4", user_id: "1" }),
+            headers: {
+              "Content-Type": "application/json"
+            }
+          });
+        })
+        .then(posted => console.log(posted))
+        .catch(err => console.log(err));
     });
   };
 
   render() {
-    {
-      console.log(this.state);
-    }
     const { photo } = this.state;
     return (
       <View style={styles.container}>
         {photo && (
           <View style={{ paddingTop: 100 }}>
-            <Image
-              source={{ uri: photo.uri }}
-              style={{
-                width: 300,
-                height: 300,
-                borderRadius: 10,
-                borderWidth: 2,
-                borderColor: "white"
-              }}
-            />
+            <TouchableOpacity onPress={this.uploadPhoto}>
+              <Image
+                source={{ uri: photo.uri }}
+                style={{
+                  width: 300,
+                  height: 300,
+                  borderRadius: 10,
+                  borderWidth: 2,
+                  borderColor: "white"
+                }}
+              />
+            </TouchableOpacity>
           </View>
         )}
         <View style={styles.btnContainer}>

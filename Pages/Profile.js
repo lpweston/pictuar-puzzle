@@ -28,7 +28,9 @@ export default class Profile extends Component {
           </View>
 
           <View style={styles.leaderboardDiv}>
-            <Text style={styles.leaderboardComplete}>John Smith</Text>
+            <Text style={styles.leaderboardComplete}>
+              John Smith | Johnsmith19
+            </Text>
             <Text style={styles.leaderboardText}>johnsmith@email.com</Text>
             <Image
               source={require("../assets/man_photo.jpg")}

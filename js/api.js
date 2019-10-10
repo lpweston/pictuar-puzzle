@@ -43,3 +43,12 @@ export const postHardGame = id => {
     })
     .catch(err => console.log(err));
 };
+
+export const putGame = id => {
+  return api
+    .put(`/games/${id}`)
+    .then(res => {
+      return res.body;
+    })
+    .catch(err => console.log(err));
+};

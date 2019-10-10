@@ -37,10 +37,10 @@ export default class ViroSample extends Component {
           borderColor: "#92BFD7",
           backgroundColor: "#92BFD7"
         }}
-        onPress={() => navigation.navigate("Profile")}
+        onPress={() => navigation.navigate("Leaderboard")}
       >
         <Text style={{ fontSize: 16, padding: 5, color: "white" }}>
-          Profile
+          Complete!
         </Text>
       </TouchableOpacity>
     ),
@@ -87,7 +87,7 @@ export default class ViroSample extends Component {
     return (
       <View style={localStyles.outer}>
         <View style={localStyles.inner}>
-          <Text style={localStyles.title}>Easy (4x4)</Text>
+          <Text style={localStyles.title}>Easy (2x2)</Text>
 
           <TouchableHighlight
             style={localStyles.userBtn}
@@ -96,7 +96,16 @@ export default class ViroSample extends Component {
           >
             <Text style={localStyles.textBtn}>Start!</Text>
           </TouchableHighlight>
-          <Text style={localStyles.title}>Hard (9x9)</Text>
+          <Text style={localStyles.title}>Medium (3x3)</Text>
+
+          <TouchableHighlight
+            style={localStyles.userBtn}
+            onPress={this._getExperienceButtonOnPress(HARD_AR_NAVIGATOR_TYPE)}
+            underlayColor={"#91B3C7"}
+          >
+            <Text style={localStyles.textBtn}>Start!</Text>
+          </TouchableHighlight>
+          <Text style={localStyles.title}>Hard (4x4)</Text>
 
           <TouchableHighlight
             style={localStyles.userBtn}

@@ -69,9 +69,39 @@ export default class Leaderboard extends Component {
                 marginRight: "auto"
               }}
             />
-            <Text style={styles.textBox}>1st - will104: {newDate}</Text>
-            <Text style={styles.textBox}>2nd - laura243: {newDate}</Text>
-            <Text style={styles.textBox}>3rd - adam284: {newDate}</Text>
+            <Text
+              style={{
+                position: "absolute",
+                top: 80,
+                right: 50,
+                color: "white",
+                fontWeight: "bold"
+              }}
+            >
+              1st - will104: {newDate}
+            </Text>
+            <Text
+              style={{
+                position: "absolute",
+                top: 100,
+                right: 32,
+                color: "white",
+                fontWeight: "bold"
+              }}
+            >
+              2nd - laura243: {newDate}
+            </Text>
+            <Text
+              style={{
+                position: "absolute",
+                top: 120,
+                right: 32,
+                color: "white",
+                fontWeight: "bold"
+              }}
+            >
+              3rd - adam284: {newDate}
+            </Text>
           </View>
           <View style={styles.leaderboardDiv}>
             <Text style={styles.leaderboardComplete}>Time to complete:</Text>
@@ -91,9 +121,39 @@ export default class Leaderboard extends Component {
                 marginRight: "auto"
               }}
             />
-            <Text style={styles.textBox}>1st - will104: {newDate}</Text>
-            <Text style={styles.textBox}>2nd - laura243: {newDate}</Text>
-            <Text style={styles.textBox}>3rd - adam284: {newDate}</Text>
+            <Text
+              style={{
+                position: "absolute",
+                top: 80,
+                right: 50,
+                color: "white",
+                fontWeight: "bold"
+              }}
+            >
+              1st - will104: {newDate}
+            </Text>
+            <Text
+              style={{
+                position: "absolute",
+                top: 100,
+                right: 32,
+                color: "white",
+                fontWeight: "bold"
+              }}
+            >
+              2nd - laura243: {newDate}
+            </Text>
+            <Text
+              style={{
+                position: "absolute",
+                top: 120,
+                right: 32,
+                color: "white",
+                fontWeight: "bold"
+              }}
+            >
+              3rd - adam284: {newDate}
+            </Text>
           </View>
           <View style={styles.leaderboardDiv}>
             <Text style={styles.leaderboardComplete}>Time to complete:</Text>
@@ -113,9 +173,39 @@ export default class Leaderboard extends Component {
                 marginRight: "auto"
               }}
             />
-            <Text style={styles.textBox}>1st - will104: {newDate}</Text>
-            <Text style={styles.textBox}>2nd - laura243: {newDate}</Text>
-            <Text style={styles.textBox}>3rd - adam284: {newDate}</Text>
+            <Text
+              style={{
+                position: "absolute",
+                top: 80,
+                right: 50,
+                color: "white",
+                fontWeight: "bold"
+              }}
+            >
+              1st - will104: {newDate}
+            </Text>
+            <Text
+              style={{
+                position: "absolute",
+                top: 100,
+                right: 32,
+                color: "white",
+                fontWeight: "bold"
+              }}
+            >
+              2nd - laura243: {newDate}
+            </Text>
+            <Text
+              style={{
+                position: "absolute",
+                top: 120,
+                right: 32,
+                color: "white",
+                fontWeight: "bold"
+              }}
+            >
+              3rd - adam284: {newDate}
+            </Text>
           </View>
         </View>
       </ScrollView>
@@ -200,7 +290,9 @@ const styles = StyleSheet.create({
     marginRight: "auto",
     color: "white",
     fontWeight: "bold",
-    fontSize: 12
+    fontSize: 12,
+    position: "absolute",
+    top: 50
   },
   leaderboardComplete: {
     color: "white",
